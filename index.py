@@ -1,38 +1,41 @@
-import pandas as pd
-import numpy as np
+import numpy as np 
+import pandas as pd 
 
 
-# Learning the series 
-''' labels=['a','b','d','c']
-
-arr=np.array([12,23,34,45])
-
-d={1:10,2:20,3:30}
-print(pd.Series(arr,index=labels))
-
-print(pd.Series(d)) '''
-
-# Learning the dataframe . multiple series 
-
-
-data = [
-     ['John', 'Anna', 'Peter', 'Linda'],
-     [28, 34, 29, 42],
-     ['New York', 'Paris', 'Berlin', 'London'],
-     [65000, 70000, 62000, 85000]
-]
-
-data1={
-    "name":["sanghakara"],
-    "age":[22]
+data = {
+    'Name': ['John', 'Anna', 'Peter', 'Linda'],
+    'Age': [28, 34, 29, 42],
+    'City': ['New York', 'Paris', 'Berlin', 'London'],
+    'Salary': [65000, 70000, 62000, 85000]
 }
+df = pd.DataFrame(data)
+print(df)
 
-df=pd.DataFrame(data1)
+data_list = [
+    ['John', 28, 'New York', 65000],
+    ['Anna', 34, 'Paris', 70000],
+    ['Peter', 29, 'Berlin', 62000],
+    ['Linda', 42, 'London', 85000]
+]
+df2 = pd.DataFrame(data_list)
+columns = ["Name","Age","City","Salary"]
+df2 = pd.DataFrame(data_list,columns =columns)
+print(df2)
 
-colums= ["Name","Age","City","Salary"]
+print(df2[["Name","City"]])
 
-df1=pd.DataFrame(data,columns=colums)
+df2["Designation"] = ["Doctor","Eng.","Doctor","Eng."]
+print(df2)
+df2.drop(0,axis = 0)
+print(df2)
+
+df2.loc[[0,1]]
+
+df.iloc[3]
 
 
+df.loc[[0,1]][["City","Salary"]]
 
-print(df1['Age'])
+print(df2[df2["Age"] > 30])
+
+print(df2[(df2["Age"] > 30) & (df2["City"] == 'Paris')])
